@@ -41,7 +41,9 @@ resource "aws_security_group" "prod_web" {
 }
 
 resource "aws_instance" "prod_web" {
-  ami           = "ami-033af604bb2b4e9b5"
+  count = 2
+
+  ami           = "ami-01216e7612243e0ef"
   instance_type = "t2.micro"
 
   vpc_security_group_ids = [
@@ -54,9 +56,12 @@ resource "aws_instance" "prod_web" {
   
 }
 
+resource "aws_eip_association" "prod_web" {
+  instance_id = aws_instance.prod_web.0.id
+  allocation_id = aws_eip.prod_web.id
+  
+}
 resource "aws_eip" "prod_web" {
-  instance = aws_instance.prod_web.id
-
   tags = {
     "Terrafrom" : "true"
   }
