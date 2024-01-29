@@ -1,1 +1,1 @@
-This is a learning section.
+This is a sample example to learn terraform.
