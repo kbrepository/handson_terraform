@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
   profile = "awskb"
 }
 
@@ -46,10 +46,11 @@ resource "aws_route_table_association" "public_subnet_association" {
 }
 
 
-
+# Instance Configuration
 resource "aws_instance" "example" {
   ami           = "ami-0a3c3a20c09d6f377"
   instance_type = "t2.micro"
+  availability_zone = aws_subnet.public_subnet
   tags = {
     Name = "ExampleInstance"
   }

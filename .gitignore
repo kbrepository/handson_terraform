@@ -1,2 +1,4 @@
 .zshrc
 downloads.html
+.terraform/
+.terraform*
