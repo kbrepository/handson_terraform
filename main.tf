@@ -14,7 +14,7 @@ resource "aws_vpc" "example_vpc" {
 resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.example_vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.region}a"
 }
 
 resource "aws_subnet" "private_subnet" {
@@ -50,7 +50,7 @@ resource "aws_route_table_association" "public_subnet_association" {
 resource "aws_instance" "example" {
   ami           = "ami-0a3c3a20c09d6f377"
   instance_type = "t2.micro"
-  availability_zone = aws_subnet.public_subnet
+  availability_zone = aws_subnet.public_subnet.id
   tags = {
     Name = "ExampleInstance"
   }
