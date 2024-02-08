@@ -2,3 +2,6 @@
 downloads.html
 .terraform/
 .terraform*
+main/.terraform*
+ec2-insatnce/.terraform*
+vpc/.terraform*
